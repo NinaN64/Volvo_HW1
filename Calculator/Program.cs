@@ -7,17 +7,17 @@
             Console.WriteLine("Calculator instructions:");
             Console.WriteLine("Enter two numbers and an operation\nAvailable operations: +, -, *, /, ^, !");
 
-            int First_Number = 0;
-            int Second_Number = 0;
+            double First_Number = 0;
+            double Second_Number = 0;
             string Operation;
 
             while(true)
             {
                 //Number Inputs
                 Console.WriteLine("\nFirst number: ");
-                First_Number = Convert.ToInt32(Console.ReadLine());
+                First_Number = Convert.ToDouble(Console.ReadLine());
                 Console.WriteLine("Second number: ");
-                Second_Number = Convert.ToInt32(Console.ReadLine());
+                Second_Number = Convert.ToDouble(Console.ReadLine());
 
                 //Operation Input
                 Console.WriteLine("Operation: ");
@@ -54,24 +54,28 @@
                         Console.WriteLine(Addition(First_Number, Second_Number));                     
                         break;                   
                 }
-                    
+                Console.WriteLine("Exit? (y/n)");
+                if(Console.ReadLine() == "y")
+                {
+                    break;
+                }
             }
         }
 
-        static int Factorial(int x)
+        static double Factorial(double x)
         {
-            int ResaultNumber = 1;
+            double ResaultNumber = 1;
             for(int  i = 1; i <= x; i++)
             {
                 ResaultNumber = ResaultNumber * i;               
             }
             return ResaultNumber;
         }
-        static int Exponentiation(int x)
+        static double Exponentiation(double x)
         {
-            int ResaultNumber = x;
+            double ResaultNumber = x;
             Console.WriteLine("Exponentiation number:");
-            int ExpNumber = Convert.ToInt32(Console.ReadLine());
+            double ExpNumber = Convert.ToInt32(Console.ReadLine());
             for(int  i = 1; i < ExpNumber; i++)
             {
                 ResaultNumber = ResaultNumber * x;
@@ -79,22 +83,22 @@
             return ResaultNumber;
         }
 
-        static int Division(int x, int y)
+        static double Division(double x, double y)
         {
             return x / y;
         }
 
-        static int Multiplication(int x, int y)
+        static double Multiplication(double x, double y)
         {
             return x * y;
         }
 
-        static int Addition(int x, int y)
+        static double Addition(double x, double y)
         {
             return x + y;
         }
 
-        static int Subtraction(int x, int y)
+        static double Subtraction(double x, double y)
         {
             return x - y;
         }
