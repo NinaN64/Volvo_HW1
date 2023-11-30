@@ -24,13 +24,15 @@
                 Operation = Console.ReadLine();
                 switch(Operation)
                 {
+                    case "-":
+                        Console.WriteLine("Result: ");
+                        Console.WriteLine(Subtraction(First_Number, Second_Number));
+                        break;
+
                     case "+":
                         Console.WriteLine("Result: ");
                         Console.WriteLine(Addition(First_Number, Second_Number));                     
-                        break;
-                    //case "-":
-
-
+                        break;                   
                 }
                     
             }
@@ -39,6 +41,11 @@
         static int Addition(int x, int y)
         {
             return x + y;
+        }
+
+        static int Subtraction(int x, int y)
+        {
+            return x - y;
         }
     }
 }
