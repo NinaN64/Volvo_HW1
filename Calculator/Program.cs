@@ -5,59 +5,65 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Calculator instructions:");
-            Console.WriteLine("Enter two numbers and an operation\nAvailable operations: +, -, *, /, ^, !");
-
-            double First_Number = 0;
-            double Second_Number = 0;
+            Console.WriteLine("Enter two numbers and an operation inbetween\nAvailable operations: +, -, *, /, ^, !");
 
             while (true)
             {
-                //Number Inputs
-               // Console.WriteLine("\nFirst number: ");
-               // First_Number = Convert.ToDouble(Console.ReadLine());
-
-                string inputString = Console.ReadLine();
-
+                double First_Number = 0;
+                double Second_Number = 0;
                 string FirstNum = null;
                 string SecondNum = null;
                 string Operation = null;
                 int WhichNumber = 1;
 
+                Console.WriteLine("Insert your operation:");
+                string inputString = Console.ReadLine();
+
+                //Separating input string
                 for (int i = 0; i < inputString.Length; i++)
                 {
-                    if(inputString[i] < 57 && inputString[i] > 48)
-                    {                        
-                        if (WhichNumber == 1) { FirstNum = FirstNum + inputString[i];}
-                        else if(WhichNumber == 2) { SecondNum = SecondNum + inputString[i]; }
+                    if(inputString[i] < 57 && inputString[i] > 48 || inputString[i] == ',' || inputString[i] == '.')
+                    {   
+                        
+                        if (WhichNumber == 1) {
+                            if (inputString[i] == '.') FirstNum = FirstNum + ',';
+                            else FirstNum = FirstNum + inputString[i];
+                        }
+                        else if(WhichNumber == 2) 
+                        {
+                            if (inputString[i] == '.') SecondNum = SecondNum + ',';
+                            SecondNum = SecondNum + inputString[i]; 
+                        }
                     }
                     if (inputString[i] == '!' || inputString[i] == '+' || inputString[i] == '-' || inputString[i] == '*' || inputString[i] == '/' || inputString[i] == '^')
                     {
-                        Operation = Operation + inputString[i];
-                        WhichNumber = WhichNumber + 1;
+                        WhichNumber++;
+                        if (WhichNumber > 2) break;
+                        Operation = Operation + inputString[i];                        
                     }
                 }
 
+                //Converting to numbers
                 First_Number = Convert.ToDouble(FirstNum);
                 Second_Number = Convert.ToDouble(SecondNum);
-                //Console.WriteLine(FirstNum);
-                
-                Operations_Selecter(First_Number,Second_Number,Operation);
-                
-                Console.WriteLine("Exit? (y/n)");
-                if(Console.ReadLine() == "y")
+
+                //Making operation
+                if (First_Number != null && Second_Number != null && Operation != null)
                 {
-                    break;
+                    Operations_Selecter(First_Number, Second_Number, Operation);
+
+                    Console.WriteLine("Exit? (y/n)");
+                    if (Console.ReadLine() == "y")
+                    {
+                        break;
+                    }
                 }
+                else { Console.WriteLine("Please put a correct operation"); }
             }
         }
 
         static void Operations_Selecter(double First_Number, double Second_Number, string Operation)
-        {
-        
-        //string Operation;
-        //Operation Input
-        //Console.WriteLine("Operation: ");
-        //Operation = Console.ReadLine();
+        {              
             if (Operation == "+" || Operation == "-" || Operation == "*" || Operation == "/" || Operation == "^" || Operation == "!")
             {
                 switch (Operation)
@@ -67,41 +73,22 @@
                         break;
 
                     case "^":
-                        //Console.WriteLine("Exponentiation number:");
-                        //double ExpNumber = Convert.ToInt32(Console.ReadLine());
-
                         Console.WriteLine("\n" + First_Number + Operation + Second_Number + " = " + Exponentiation(First_Number, Second_Number));
                         break;
 
                     case "/":
-                        //Console.WriteLine("Second number: ");
-                        //Second_Number = Convert.ToDouble(Console.ReadLine());
-
-                        Console.WriteLine("Result: ");
                         Console.WriteLine("\n" + First_Number + Operation + Second_Number + " = " + Division(First_Number, Second_Number));
                         break;
 
-                    case "*":
-                        //Console.WriteLine("Second number: ");
-                        //Second_Number = Convert.ToDouble(Console.ReadLine());
-
-                        Console.WriteLine("Result: ");
+                    case "*":                       
                         Console.WriteLine("\n" + First_Number + Operation + Second_Number + " = " + Multiplication(First_Number, Second_Number));
                         break;
 
                     case "-":
-                        //Console.WriteLine("Second number: ");
-                        //Second_Number = Convert.ToDouble(Console.ReadLine());
-
-                        Console.WriteLine("Result: ");
                         Console.WriteLine("\n" + First_Number + Operation + Second_Number + " = " + Subtraction(First_Number, Second_Number));
                         break;
 
                     case "+":
-                        //Console.WriteLine("Second number: ");
-                        //Second_Number = Convert.ToDouble(Console.ReadLine());
-
-                        Console.WriteLine("Result: ");
                         Console.WriteLine("\n" + First_Number + Operation + Second_Number + " = " + Addition(First_Number, Second_Number));
                         break;
                 }
