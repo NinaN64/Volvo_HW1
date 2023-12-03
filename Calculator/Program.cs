@@ -8,8 +8,7 @@
             Console.WriteLine("Enter two numbers and an operation\nAvailable operations: +, -, *, /, ^, !");
 
             double First_Number = 0;
-            double Second_Number = 0;
-            string Operation;
+            
 
             while(true)
             {
@@ -17,10 +16,33 @@
                 Console.WriteLine("\nFirst number: ");
                 First_Number = Convert.ToDouble(Console.ReadLine());
 
-                //Operation Input
-                Console.WriteLine("Operation: ");
-                Operation = Console.ReadLine();
-                switch(Operation)
+                //string inputString = "2 + 2";
+
+                /*for(int i = 0; i < inputString.Length; i++)
+                {
+
+                }*/
+
+                Operations_Selecter(First_Number);
+                
+                Console.WriteLine("Exit? (y/n)");
+                if(Console.ReadLine() == "y")
+                {
+                    break;
+                }
+            }
+        }
+
+        static void Operations_Selecter(double First_Number)
+        {
+        double Second_Number = 0;
+        string Operation;
+        //Operation Input
+        Console.WriteLine("Operation: ");
+        Operation = Console.ReadLine();
+            if (Operation == "+" || Operation == "-" || Operation == "*" || Operation == "/" || Operation == "^" || Operation == "!")
+            {
+                switch (Operation)
                 {
                     case "!":
                         Console.WriteLine("\n" + First_Number + Operation + " = " + Factorial(First_Number));
@@ -62,14 +84,14 @@
                         Second_Number = Convert.ToDouble(Console.ReadLine());
 
                         Console.WriteLine("Result: ");
-                        Console.WriteLine("\n" + First_Number + Operation + Second_Number + " = " + Addition(First_Number, Second_Number));                     
-                        break;                   
+                        Console.WriteLine("\n" + First_Number + Operation + Second_Number + " = " + Addition(First_Number, Second_Number));
+                        break;
                 }
-                Console.WriteLine("Exit? (y/n)");
-                if(Console.ReadLine() == "y")
-                {
-                    break;
-                }
+            }
+            else 
+            {
+                Console.WriteLine("You need to pick an existing operation!");
+                Operations_Selecter(First_Number);
             }
         }
 
